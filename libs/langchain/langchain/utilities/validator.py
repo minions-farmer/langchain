@@ -26,7 +26,7 @@ class ValidatorWrapper(BaseModel):
     def validate_environment(cls, values: Dict) -> Dict:
         """Validate that api key exists in environment."""
         values["validator_api_key"] = get_from_dict_or_env(
-            values, "validator_api_key", f"{_NAME}_API_KEY"
+            values, "validator_api_key", f"{_NAME.upper()}_API_KEY"
         )
         return values
 
