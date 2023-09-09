@@ -44,6 +44,7 @@ from langchain.tools.dataforseo_api_search import DataForSeoAPISearchResults
 from langchain.utilities import ArxivAPIWrapper
 from langchain.utilities import GoldenQueryAPIWrapper
 from langchain.utilities import PubMedAPIWrapper
+from langchain.utilities import ValidatorWrapper
 from langchain.utilities.bing_search import BingSearchAPIWrapper
 from langchain.utilities.duckduckgo_search import DuckDuckGoSearchAPIWrapper
 from langchain.utilities.google_search import GoogleSearchAPIWrapper
