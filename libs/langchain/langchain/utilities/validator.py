@@ -21,11 +21,13 @@ class ValidatorWrapper(BaseModel):
 
     parse: Any  #: :meta private:
     validator_api_key: Optional[str] = None
-    
+
     @root_validator()
     def validate_environment(cls, values: Dict) -> Dict:
         """Validate that api key exists in environment."""
-        values["validator_api_key"] = get_from_dict_or_env(values, "validator_api_key", f"{_NAME}_API_KEY")
+        values["validator_api_key"] = get_from_dict_or_env(
+            values, "validator_api_key", f"{_NAME}_API_KEY"
+        )
         return values
 
     def run(self, params: Dict[str, str]) -> str:
@@ -41,6 +43,6 @@ class ValidatorWrapper(BaseModel):
             elif r.status_code == 403:
                 return f"{_NAME} permission error"
             else:
-                return f"{_NAME} error {r.content}"
+                return f"{_NAME} error {r.text}"
         except Exception as ex:
             return f"{_NAME} exception: {ex}"
