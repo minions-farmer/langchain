@@ -349,7 +349,7 @@ _EXTRA_OPTIONAL_TOOLS: Dict[str, Tuple[Callable[[KwArg(Any)], BaseTool], List[st
         _get_dataforseo_api_search_json,
         ["api_login", "api_password", "aiosession"],
     ),
-    "validator": (_get_vaidator, ["validator_api_key"])
+    "validator": (_get_vaidator, ["validator_api_key"]),
 }
 
 
