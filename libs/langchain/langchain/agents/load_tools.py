@@ -44,7 +44,6 @@ from langchain.tools.dataforseo_api_search import DataForSeoAPISearchResults
 from langchain.utilities import ArxivAPIWrapper
 from langchain.utilities import GoldenQueryAPIWrapper
 from langchain.utilities import PubMedAPIWrapper
-from langchain.utilities import ValidatorWrapper
 from langchain.utilities.bing_search import BingSearchAPIWrapper
 from langchain.utilities.duckduckgo_search import DuckDuckGoSearchAPIWrapper
 from langchain.utilities.google_search import GoogleSearchAPIWrapper
@@ -55,6 +54,7 @@ from langchain.utilities.graphql import GraphQLAPIWrapper
 from langchain.utilities.searx_search import SearxSearchWrapper
 from langchain.utilities.serpapi import SerpAPIWrapper
 from langchain.utilities.twilio import TwilioAPIWrapper
+from langchain.utilities.validator import ValidatorWrapper
 from langchain.utilities.wikipedia import WikipediaAPIWrapper
 from langchain.utilities.wolfram_alpha import WolframAlphaAPIWrapper
 from langchain.utilities.openweathermap import OpenWeatherMapAPIWrapper
@@ -239,6 +239,14 @@ def _get_twilio(**kwargs: Any) -> BaseTool:
     )
 
 
+def _get_vaidator(**kwargs: Any) -> BaseTool:
+    return Tool(
+        name="LLM output validation visualizer",
+        description="Given an LLM prompt and an LLM generation, it returns a webpage url that visually validates LLM output",
+        func=ValidatorWrapper(**kwargs).run,
+    )
+
+
 def _get_searx_search(**kwargs: Any) -> BaseTool:
     return SearxSearchRun(wrapper=SearxSearchWrapper(**kwargs))
 
@@ -341,6 +349,7 @@ _EXTRA_OPTIONAL_TOOLS: Dict[str, Tuple[Callable[[KwArg(Any)], BaseTool], List[st
         _get_dataforseo_api_search_json,
         ["api_login", "api_password", "aiosession"],
     ),
+    "validator": (_get_vaidator, ["validator_api_key"])
 }
 
 
