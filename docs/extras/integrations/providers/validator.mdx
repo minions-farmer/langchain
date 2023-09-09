@@ -1,0 +1,31 @@
+# Validator
+
+This page covers how to use the Validator within LangChain.
+It is broken into two parts: setup and references to the specific Validator wrapper.
+
+## Setup
+- Get a Validator api key and either set it as an environment variable (`VALIDATOR_API_KEY`)
+or initialize the loader with `validator_api_key`.
+
+## Wrappers
+
+### Utility
+
+There exists a Validator utility which wraps this API. To import this utility:
+
+```python
+from langchain.utilities import ValidatorWrapper
+```
+
+For a more detailed walkthrough of this wrapper, see [this notebook](/docs/integrations/tools/validator.html).
+
+### Tool
+
+You can also easily load this wrapper as a Tool (to use with an Agent).
+You can do this with:
+```python
+from langchain.agents import load_tools
+tools = load_tools(["validator"])
+```
+
+For more information on this, see [this page](/docs/modules/agents/tools)
