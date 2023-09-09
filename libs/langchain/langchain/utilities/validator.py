@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 import requests
 
@@ -12,14 +12,24 @@ _URL = "https://validator.minions.farm"
 
 
 class ValidatorWrapper(BaseModel):
-    """
-    Wrapper around Validator API.
+    """Wrapper for LLM output validation with visualization
 
-    Parameters:
-    TODO
+    To use set the env variable ``VALIDATOR_API_KEY`` or pass validator_api_key as
+    named parameter to the constructor.
+
+    Example:
+        .. code-block:: python
+
+            from langchain.utilities.validator import ValidatorWrapper
+            validator = ValidatorWrapper()
+            validator.run(
+                generated_text="generated_text": "An apple is red",
+                input_text="An apple is red. A banana is yellow. What color is an apple"
+            )
     """
 
     parse: Any  #: :meta private:
+    """Validator api key"""
     validator_api_key: Optional[str] = None
 
     @root_validator()
@@ -30,14 +40,33 @@ class ValidatorWrapper(BaseModel):
         )
         return values
 
-    def run(self, params: Dict[str, str]) -> str:
+    def run(
+        self, input_text: str, generated_text: str, checklist: Optional[List[str]] = []
+    ) -> str:
         """
-        TODO
+        Args:
+            input_text: The original text that serves as input to a language model like
+                GPT.
+            generated_text: The text output produced by the language model in response
+                to the input text. This could be an answer, explanation, or any other
+                form of textual content.
+            checklist: An array containing guidelines or criteria that the language
+                model's output should ideally meet. These guidelines may not have been
+                directly provided to the model but serve as post-hoc checks.
+        Returns:
+            str: A URL pointing to a webpage that visualizes the language model's output
+                based on the given input text and guidelines.
         """
 
         try:
             headers = {"Authorization": f"Bearer {self.validator_api_key}"}
-            r = requests.post(f"{_URL}/api/annotate", headers=headers, json=params)
+            payload = {
+                "input_text": input_text,
+                "generated_text": generated_text,
+            }
+            if checklist:
+                payload["checklist"] = checklist
+            r = requests.post(f"{_URL}/api/annotate", headers=headers, json=payload)
             if r.status_code == 200:
                 return f"{_URL}/api/annotations?doc_id={r.json()['doc_id']}"
             elif r.status_code == 403:
