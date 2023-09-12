@@ -12,10 +12,11 @@ _URL = "https://validator.minions.farm"
 
 
 class ValidatorWrapper(BaseModel):
-    """Wrapper for LLM output validation with visualization
+    """Wrapper for visually validating an LLM prompt and its output
 
-    To use set the env variable ``VALIDATOR_API_KEY`` or pass validator_api_key as named
-    parameter to the constructor. Get a key from https://validator.minions.farm/settings
+    To use this wrapper, set the env variable ``VALIDATOR_API_KEY`` or pass
+    ``validator_api_key`` as named parameter to the constructor. Get your api key from
+    https://validator.minions.farm/settings
 
     Example:
         .. code-block:: python
@@ -23,7 +24,7 @@ class ValidatorWrapper(BaseModel):
             from langchain.utilities.validator import ValidatorWrapper
             validator = ValidatorWrapper()
             validator.run(
-                generated_text="generated_text": "An apple is red",
+                generated_text="An apple is red",
                 input_text="An apple is red. A banana is yellow. What color is an apple"
             )
     """
