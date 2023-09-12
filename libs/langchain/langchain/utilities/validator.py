@@ -14,8 +14,8 @@ _URL = "https://validator.minions.farm"
 class ValidatorWrapper(BaseModel):
     """Wrapper for LLM output validation with visualization
 
-    To use set the env variable ``VALIDATOR_API_KEY`` or pass validator_api_key as
-    named parameter to the constructor.
+    To use set the env variable ``VALIDATOR_API_KEY`` or pass validator_api_key as named
+    parameter to the constructor. Get a key from https://validator.minions.farm/settings
 
     Example:
         .. code-block:: python
