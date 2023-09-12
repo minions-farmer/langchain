@@ -241,8 +241,8 @@ def _get_twilio(**kwargs: Any) -> BaseTool:
 
 def _get_vaidator(**kwargs: Any) -> BaseTool:
     return Tool(
-        name="LLM output validation visualizer",
-        description="Given an LLM prompt and an LLM generation, it returns a webpage url that visually validates LLM output",
+        name="Visual validator for an LLM prompt and its output",
+        description="Given an LLM prompt and its corresponding output, it returns a webpage url that visually validates the prompt and output",
         func=ValidatorWrapper(**kwargs).run,
     )
 
