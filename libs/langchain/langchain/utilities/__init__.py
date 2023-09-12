@@ -33,6 +33,7 @@ from langchain.utilities.spark_sql import SparkSQL
 from langchain.utilities.sql_database import SQLDatabase
 from langchain.utilities.tensorflow_datasets import TensorflowDatasets
 from langchain.utilities.twilio import TwilioAPIWrapper
+from langchain.utilities.validator import ValidatorWrapper
 from langchain.utilities.wikipedia import WikipediaAPIWrapper
 from langchain.utilities.wolfram_alpha import WolframAlphaAPIWrapper
 from langchain.utilities.zapier import ZapierNLAWrapper
@@ -71,6 +72,7 @@ __all__ = [
     "TextRequestsWrapper",
     "TextRequestsWrapper",
     "TwilioAPIWrapper",
+    "ValidatorWrapper",
     "WikipediaAPIWrapper",
     "WolframAlphaAPIWrapper",
     "ZapierNLAWrapper",

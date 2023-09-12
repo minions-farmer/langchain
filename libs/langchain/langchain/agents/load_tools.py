@@ -54,6 +54,7 @@ from langchain.utilities.graphql import GraphQLAPIWrapper
 from langchain.utilities.searx_search import SearxSearchWrapper
 from langchain.utilities.serpapi import SerpAPIWrapper
 from langchain.utilities.twilio import TwilioAPIWrapper
+from langchain.utilities.validator import ValidatorWrapper
 from langchain.utilities.wikipedia import WikipediaAPIWrapper
 from langchain.utilities.wolfram_alpha import WolframAlphaAPIWrapper
 from langchain.utilities.openweathermap import OpenWeatherMapAPIWrapper
@@ -238,6 +239,14 @@ def _get_twilio(**kwargs: Any) -> BaseTool:
     )
 
 
+def _get_vaidator(**kwargs: Any) -> BaseTool:
+    return Tool(
+        name="Visual validator for an LLM prompt and its output",
+        description="Given an LLM prompt and its corresponding output, it returns a webpage url that visually validates the prompt and output",
+        func=ValidatorWrapper(**kwargs).run,
+    )
+
+
 def _get_searx_search(**kwargs: Any) -> BaseTool:
     return SearxSearchRun(wrapper=SearxSearchWrapper(**kwargs))
 
@@ -340,6 +349,7 @@ _EXTRA_OPTIONAL_TOOLS: Dict[str, Tuple[Callable[[KwArg(Any)], BaseTool], List[st
         _get_dataforseo_api_search_json,
         ["api_login", "api_password", "aiosession"],
     ),
+    "validator": (_get_vaidator, ["validator_api_key"]),
 }
 
 

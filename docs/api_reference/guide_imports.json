@@ -1136,6 +1136,9 @@
     "YouTubeSearchTool": {
         "YouTubeSearchTool": "https://python.langchain.com/docs/integrations/tools/youtube"
     },
+    "ValidatorWrapper": {
+        "Validator": "https://python.langchain.com/docs/integrations/tools/validator"
+    },
     "VectorstoreIndexCreator": {
         "Apify": "https://python.langchain.com/docs/integrations/tools/apify",
         "HuggingFace dataset": "https://python.langchain.com/docs/integrations/document_loaders/hugging_face_dataset",

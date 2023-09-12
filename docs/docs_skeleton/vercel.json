@@ -501,6 +501,10 @@
       "destination": "/docs/integrations/providers/unstructured"
     },
     {
+      "source": "/docs/integrations/validator",
+      "destination": "/docs/integrations/providers/validator"
+    },
+    {
       "source": "/docs/integrations/vectara/vectara_chat",
       "destination": "/docs/integrations/providers/vectara_chat"
     },
@@ -1043,6 +1047,14 @@
     {
       "source": "/docs/modules/agents/tools/integrations/twilio",
       "destination": "/docs/integrations/tools/twilio"
+    },
+    {
+      "source": "/en/latest/modules/agents/tools/examples/validator.html",
+      "destination": "/docs/integrations/tools/validator"
+    },
+    {
+      "source": "/docs/modules/agents/tools/integrations/validator",
+      "destination": "/docs/integrations/tools/validator"
     },
     {
       "source": "/en/latest/modules/agents/tools/examples/wikipedia.html",

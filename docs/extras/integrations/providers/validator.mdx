@@ -1,0 +1,38 @@
+# Validator
+
+This page covers how to use Validator within LangChain.
+It is broken into two parts: setup and references to the specific Validator wrapper.
+
+## Setup
+- Get a Validator api key from https://validator.minions.farm/settings and
+either set it as an environment variable (`VALIDATOR_API_KEY`) or initialize
+the constructor with `validator_api_key`.
+
+## Wrapper
+
+### Utility
+
+To import the Validator utility:
+
+```python
+from langchain.utilities import ValidatorWrapper
+
+validator = ValidatorWrapper()
+# the url points to a webpage with validation visualization
+url = validator.run(
+    input_text="An apple is red. A banana is yellow. What color is an apple?",
+    generated_text="An apple is red",
+)
+```
+
+To try the Validator wrapper yourself, see [this notebook](/docs/integrations/tools/validator.html).
+
+### Tool
+
+You can also easily load Validator as a Tool (to use with an Agent):
+```python
+from langchain.agents import load_tools
+tools = load_tools(["validator"])
+```
+
+For more information on this, see [this page](/docs/modules/agents/tools)
