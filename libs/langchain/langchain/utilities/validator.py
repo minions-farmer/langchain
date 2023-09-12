@@ -61,12 +61,17 @@ class ValidatorWrapper(BaseModel):
 
         try:
             headers = {"Authorization": f"Bearer {self.validator_api_key}"}
-            payload = {
-                "input_text": input_text,
-                "generated_text": generated_text,
-            }
             if checklist:
-                payload["checklist"] = checklist
+                payload = {
+                    "input_text": input_text,
+                    "generated_text": generated_text,
+                    "checklist": checklist,
+                }
+            else:
+                payload = {
+                    "input_text": input_text,
+                    "generated_text": generated_text,
+                }
             r = requests.post(f"{_URL}/api/annotate", headers=headers, json=payload)
             if r.status_code == 200:
                 return f"{_URL}/api/annotations?doc_id={r.json()['doc_id']}"
